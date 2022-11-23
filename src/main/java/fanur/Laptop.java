@@ -5,21 +5,21 @@ import java.util.*;
 public class Laptop {
 
     private int price;
-    private int ram;
+    private int RAM;
     private int hardDrive;
     private int diagonalScreen;
 
     private static final TreeSet<Laptop> modelsSet = new TreeSet<>(new Comparator<Laptop>() {
         @Override
         public int compare(Laptop o1, Laptop o2) {
-            return (o1.ram - o2.ram) - (o1.price - o2.price) -
+            return (o1.RAM - o2.RAM) - (o1.price - o2.price) -
                     (o1.hardDrive - o2.hardDrive) - (o1.diagonalScreen - o2.diagonalScreen);
         }
     });
 
-    private Laptop(int price, int ram, int hardDrive, int diagonalScreen) {
+    private Laptop(int price, int RAM, int hardDrive, int diagonalScreen) {
         this.price = price;
-        this.ram = ram;
+        this.RAM = RAM;
         this.hardDrive = hardDrive;
         this.diagonalScreen = diagonalScreen;
     }
@@ -27,15 +27,15 @@ public class Laptop {
     public Laptop() {
     }
 
-    public void addModelLaptop(int price, int ram, int hardDrive, int diagonalScreen) {
-        Laptop newModel = new Laptop(price,ram, hardDrive, diagonalScreen);
+    public void addModelLaptop(int price, int RAM, int hardDrive, int diagonalScreen) {
+        Laptop newModel = new Laptop(price,RAM, hardDrive, diagonalScreen);
         modelsSet.add(newModel);
     }
 
     @Override
     public String toString() {
         return "\nЦена = " + price + " $" +
-                " / Объем оперативной памяти = " + ram + " Гб" +
+                " / Объем оперативной памяти = " + RAM + " Гб" +
                 " / Объем жесткого диска = " + hardDrive + " Гб" +
                 " / Диагональ экрана = " + diagonalScreen + " дюймов";
     }
@@ -46,14 +46,14 @@ public class Laptop {
         if (o == null || getClass() != o.getClass()) return false;
         Laptop that = (Laptop) o;
         return price == that.price &&
-                ram == that.ram &&
+                RAM == that.RAM &&
                 hardDrive == that.hardDrive &&
                 diagonalScreen == that.diagonalScreen;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(price, ram, hardDrive, diagonalScreen);
+        return Objects.hash(price, RAM, hardDrive, diagonalScreen);
     }
 
     public String searchModels() {
@@ -65,7 +65,7 @@ public class Laptop {
         List<Laptop> resultList = new ArrayList<>();
         for (var model : modelsSet) {
             if ((model.price >= minMod.get(1) && model.price <= maxMod.get(1)) &&
-                    (model.ram >= minMod.get(2) && model.ram <= maxMod.get(2)) &&
+                    (model.RAM >= minMod.get(2) && model.RAM <= maxMod.get(2)) &&
                     (model.hardDrive >= minMod.get(3) && model.hardDrive <= maxMod.get(3)) &&
                     (model.diagonalScreen >= minMod.get(4) && model.diagonalScreen <= maxMod.get(4))){
                 resultList.add(model);
