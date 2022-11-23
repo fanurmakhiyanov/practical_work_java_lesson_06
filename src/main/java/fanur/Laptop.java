@@ -9,7 +9,7 @@ public class Laptop {
     private int hardDrive;
     private int diagonalScreen;
 
-    private static TreeSet<Laptop> modelsSet = new TreeSet<>(new Comparator<Laptop>() {
+    private static final TreeSet<Laptop> modelsSet = new TreeSet<>(new Comparator<Laptop>() {
         @Override
         public int compare(Laptop o1, Laptop o2) {
             return (o1.ram - o2.ram) - (o1.price - o2.price) -
@@ -34,10 +34,10 @@ public class Laptop {
 
     @Override
     public String toString() {
-        return "\nprice=" + price +
-                ", Ram=" + ram +
-                ", HardDrive=" + hardDrive +
-                ", diagonalScreen=" + diagonalScreen;
+        return "\nЦена = " + price + " $" +
+                " / Объем оперативной памяти = " + ram + " Гб" +
+                " / Объем жесткого диска = " + hardDrive + " Гб" +
+                " / Диагональ экрана = " + diagonalScreen + " дюймов";
     }
 
     @Override
@@ -57,9 +57,9 @@ public class Laptop {
     }
 
     public String searchModels() {
-        System.out.println("Укажите минимальный характеристики:");
+        System.out.println("Укажите минимальные характеристики ноутбука:");
         HashMap<Integer, Integer> minMod = getSpecifications();
-        System.out.println("Укажите максимальный характеристики:");
+        System.out.println("Укажите максимальные характеристики ноутбука:");
         HashMap<Integer, Integer> maxMod = getSpecifications();
 
         List<Laptop> resultList = new ArrayList<>();
@@ -73,20 +73,20 @@ public class Laptop {
         }
         if (resultList.size() > 0)
             return resultList.toString();
-        else return "По вашему запросу ничего не найдено.";
+        else return "По вашему запросу ничего не найдено. Попробуйте задать иные параметры";
     }
 
     private static HashMap<Integer, Integer> getSpecifications() {
         HashMap<Integer, Integer> resultMap = new HashMap<>();
         Scanner scanner = new Scanner(System.in);
         int i = 1;
-        System.out.println("Укажите цену ($): ");
+        System.out.println("Задайте цену в $: ");
         resultMap.put(i++, scanner.nextInt());
-        System.out.println("Укажите RAM (ГБ): ");
+        System.out.println("Задайте объем оперативной памяти RAM в Гб: ");
         resultMap.put(i++, scanner.nextInt());
-        System.out.println("Укажите HD (ГБ): ");
+        System.out.println("Задайте объем жесткого диска SDD в Гб: ");
         resultMap.put(i++, scanner.nextInt());
-        System.out.println("Укажите диагональ (Inch): ");
+        System.out.println("Задайте диагональ экрана в дюймах: ");
         resultMap.put(i, scanner.nextInt());
         return resultMap;
     }
